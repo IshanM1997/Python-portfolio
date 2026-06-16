@@ -1,0 +1,6 @@
+<button class="btn-like" [class.liked]="hasLiked" aria-label="Like this portfolio" (click)="onLike()">
+  <i class="fas fa-heart like-icon"></i>
+  <span class="like-label">Like</span>
+  <span class="like-count">{{ likeCount }}</span>
+</button>
+<p class="like-thanks" [class.visible]="showThanks">{{ thanksMessage }}</p>

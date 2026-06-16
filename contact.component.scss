@@ -1,0 +1,22 @@
+.contact-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem; margin-top: 2rem;
+}
+.contact-box {
+  background: var(--bg-secondary); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 1.8rem;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem;
+  transition: var(--transition-smooth);
+  &:hover { border-color: rgba(255,214,10,0.2); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.35); }
+  h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main); }
+  p  { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+}
+.contact-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.6rem 1.2rem; border-radius: 10px; font-size: 0.88rem; font-weight: 600;
+  text-decoration: none; border: 1px solid transparent; transition: var(--transition-smooth);
+  &:hover { filter: brightness(1.15); transform: translateY(-1px); }
+  &--email    { background: rgba(255,214,10,0.12);  border-color: rgba(255,214,10,0.4);  color: var(--accent); }
+  &--whatsapp { background: rgba(37,211,102,0.12);  border-color: rgba(37,211,102,0.4);  color: #25d366; }
+  &--linkedin { background: rgba(0,119,181,0.12);   border-color: rgba(0,119,181,0.4);   color: #0a66c2; }
+}

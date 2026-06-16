@@ -1,0 +1,49 @@
+.section-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; }
+.section-tab {
+  background: none; border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted);
+  border-radius: 8px; padding: 0.55rem 1.3rem; font-size: 0.88rem; cursor: pointer;
+  transition: var(--transition-smooth);
+  &.active, &:hover { background: rgba(255,59,48,0.12); border-color: rgba(255,59,48,0.5); color: var(--accent-red); }
+}
+.section-panel { display: none; &.active { display: block; } }
+
+.carousel-wrapper { display: flex; align-items: center; gap: 0.75rem; }
+.carousel-track {
+  display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: none; padding: 0.5rem 0.25rem 1rem; flex: 1;
+  &::-webkit-scrollbar { display: none; }
+}
+.carousel-arrow {
+  flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05);
+  color: var(--text-muted); cursor: pointer; display: flex; align-items: center;
+  justify-content: center; transition: var(--transition-smooth);
+  &:hover:not(:disabled) { background: rgba(255,214,10,0.12); border-color: rgba(255,214,10,0.4); color: var(--accent); }
+  &:disabled { opacity: 0.25; cursor: not-allowed; }
+}
+.project-card, .cert-card {
+  flex: 0 0 300px; scroll-snap-align: start;
+  background: var(--bg-secondary); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 1.6rem; transition: var(--transition-smooth);
+  display: flex; flex-direction: column;
+  &:hover { border-color: rgba(255,214,10,0.25); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+  h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--text-main); }
+  p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; flex: 1; }
+}
+.project-tags {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.9rem 0;
+  span { font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); }
+}
+.project-actions { margin-top: 1rem; }
+.cert-issuer, .cert-date, .cert-credential {
+  font-size: 0.82rem; color: var(--text-muted); margin-top: 0.4rem;
+  span { word-break: break-all; font-size: 0.75rem; opacity: 0.7; }
+}
+.btn-github, .btn-cert {
+  display: inline-flex; align-items: center; padding: 0.45rem 1rem;
+  border-radius: 8px; font-size: 0.82rem; font-weight: 600;
+  text-decoration: none; transition: var(--transition-smooth); border: 1px solid;
+  &:hover { filter: brightness(1.2); transform: translateY(-1px); }
+}
+.btn-github { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); color: var(--text-main); }
+.btn-cert   { background: rgba(255,214,10,0.1);  border-color: rgba(255,214,10,0.35);   color: var(--accent); }

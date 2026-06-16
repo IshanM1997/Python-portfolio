@@ -1,0 +1,84 @@
+<section id="projects" class="section projects-section">
+  <div class="container">
+    <h2 class="section-title" appReveal="up">Works and Achievements</h2>
+
+    <div class="section-tabs" role="tablist" appReveal="up">
+      <button class="section-tab" [class.active]="activeTab==='projects'"
+        role="tab" (click)="switchTab('projects')">
+        <i class="fas fa-code me-2"></i>Projects
+      </button>
+      <button class="section-tab" [class.active]="activeTab==='certs'"
+        role="tab" (click)="switchTab('certs')">
+        <i class="fas fa-certificate me-2"></i>Certificates
+      </button>
+    </div>
+
+    <!-- PROJECTS PANEL -->
+    <div class="section-panel" [class.active]="activeTab==='projects'" role="tabpanel">
+      <div class="carousel-wrapper">
+        <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left"
+          [disabled]="projLeftDis" (click)="scrollLeft('projects')">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="carousel-track" #projectsTrack
+          (scroll)="updateArrows('projects')"
+          (touchstart)="onTouchStart($event,'projects')"
+          (touchmove)="onTouchMove($event)"
+          (touchend)="onTouchEnd($event,'projects')">
+          <div class="project-card" *ngFor="let p of projects">
+            <div class="project-info">
+              <h3>{{ p.title }}</h3>
+              <p>{{ p.description }}</p>
+              <div class="project-tags">
+                <span *ngFor="let tag of p.tags">{{ tag }}</span>
+              </div>
+              <div class="project-actions">
+                <a [href]="p.githubUrl" target="_blank" rel="noopener noreferrer" class="btn-github">
+                  <i class="fab fa-github me-2"></i>View on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right"
+          [disabled]="projRightDis" (click)="scrollRight('projects')">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- CERTS PANEL -->
+    <div class="section-panel" [class.active]="activeTab==='certs'" role="tabpanel">
+      <div class="carousel-wrapper">
+        <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll left"
+          [disabled]="certLeftDis" (click)="scrollLeft('certs')">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="carousel-track" #certsTrack
+          (scroll)="updateArrows('certs')"
+          (touchstart)="onTouchStart($event,'certs')"
+          (touchmove)="onTouchMove($event)"
+          (touchend)="onTouchEnd($event,'certs')">
+          <div class="cert-card" *ngFor="let c of certificates">
+            <div class="cert-info">
+              <h3>{{ c.title }}</h3>
+              <p class="cert-issuer"><i class="fas fa-building me-1"></i>{{ c.issuer }}</p>
+              <p class="cert-date"><i class="fas fa-calendar-alt me-1"></i>Issued: {{ c.issuedDate }}</p>
+              <p class="cert-credential"><i class="fas fa-id-badge me-1"></i>Certificate ID: <span>{{ c.credentialId }}</span></p>
+              <div class="project-actions">
+                <a [href]="c.viewUrl" target="_blank" rel="noopener noreferrer" class="btn-cert">
+                  <i class="fas fa-external-link-alt me-2"></i>View Certificate
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll right"
+          [disabled]="certRightDis" (click)="scrollRight('certs')">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>

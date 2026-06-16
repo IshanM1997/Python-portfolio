@@ -1,0 +1,80 @@
+<section id="about" class="section about-section">
+  <div class="container">
+    <div class="about-card" appReveal="up">
+
+      <!-- LEFT -->
+      <div class="about-card__left">
+        <div class="about-avatar-wrap">
+          <img src="assets/images/Firefly_Gemini_Flash.png" alt="Ishan Mukhopadhyay" class="about-avatar">
+        </div>
+        <h2 class="about-greeting">Hi I'm <span>Ishan Mukhopadhyay</span></h2>
+        <h5 class="about-welcome">Welcome to my Portfolio Website.<br>
+          If you like my work drop a <span class="heart-inline">❤</span> Like</h5>
+        <span class="about-role-badge">{{ roleBadge }}</span>
+        <app-like-button></app-like-button>
+      </div>
+
+      <div class="about-card__divider"></div>
+
+      <!-- RIGHT -->
+      <div class="about-card__right">
+        <div class="about-tabs" role="tablist">
+          <button class="about-tab" [class.active]="activeTab==='technical'"
+            role="tab" [attr.aria-selected]="activeTab==='technical'" (click)="switchTab('technical')">
+            <i class="fas fa-laptop-code"></i> Technical
+          </button>
+          <button class="about-tab" [class.active]="activeTab==='creative'"
+            role="tab" [attr.aria-selected]="activeTab==='creative'" (click)="switchTab('creative')">
+            <i class="fas fa-camera"></i> Creative
+          </button>
+        </div>
+
+        <!-- TECHNICAL TAB -->
+        <div class="about-tab-content" [class.active]="activeTab==='technical'" role="tabpanel">
+          <p class="about-bio">I am a passionate developer focused on writing clean, elegant, and efficient code. With a deep interest in software architecture and modern web technologies, I bridge the gap between complex backend logic and seamless frontend design.</p>
+          <p class="about-bio">🚀 Java Full-Stack Engineer | Spring Boot &amp; Angular | Currently upskilling in Data Engineering &amp; Python 🐍</p>
+          <h4 class="skills-heading">My Skills</h4>
+          <div class="skill-tiles">
+            <div class="skill-tile" *ngFor="let s of technicalSkills">
+              <i [class]="s.iconClass" class="skill-tile__icon" [style.color]="s.color"></i>
+              <span>{{ s.name }}</span>
+            </div>
+          </div>
+          <div class="about-social mt-3">
+            <a href="https://github.com/IshanM1997" target="_blank" rel="noopener noreferrer" class="social-pill"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://www.linkedin.com/in/ishan-mukhopadhyay-7ab867123/" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--linkedin"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            <a href="YOUR_RESUME_LINK" target="_blank" rel="noopener noreferrer" class="social-pill"><i class="fas fa-file-alt"></i> Resume</a>
+          </div>
+        </div>
+
+        <!-- CREATIVE TAB -->
+        <div class="about-tab-content" [class.active]="activeTab==='creative'" role="tabpanel">
+          <p class="about-bio">Explorer · Adventurer · Foodie · I click at times. I observe and capture moments that become memories — photography is how I see the world differently.</p>
+          <p class="about-bio">Advanced Adobe Photoshop Editor &nbsp;·&nbsp; Nikon D5300 &amp; Z6III &nbsp;·&nbsp; HIPA Merit Award Winner &nbsp;·&nbsp; Documentary · Street · Event · Travel</p>
+          <h4 class="skills-heading">My Skills</h4>
+          <div class="skill-tiles">
+            <div class="skill-tile" *ngFor="let s of creativeSkills">
+              <ng-container *ngIf="s.svgContent; else iconTpl">
+                <svg class="skill-tile__icon" viewBox="0 0 50 50" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="50" height="50" rx="7" [attr.fill]="s.svgBg"/>
+                  <text x="50%" y="57%" dominant-baseline="middle" text-anchor="middle"
+                        font-family="Arial,sans-serif" font-size="19" font-weight="700"
+                        [attr.fill]="s.color">{{ s.svgContent }}</text>
+                </svg>
+              </ng-container>
+              <ng-template #iconTpl>
+                <i [class]="s.iconClass" class="skill-tile__icon" [style.color]="s.color"></i>
+              </ng-template>
+              <span>{{ s.name }}</span>
+            </div>
+          </div>
+          <div class="about-social mt-3">
+            <a href="https://www.facebook.com/share/18hwwAx4qs/" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--facebook"><i class="fab fa-facebook-f"></i> Facebook</a>
+            <a href="https://www.instagram.com/ishan_mukherjee_1997" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--instagram"><i class="fab fa-instagram"></i> Instagram</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
