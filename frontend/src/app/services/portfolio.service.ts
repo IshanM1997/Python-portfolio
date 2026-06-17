@@ -1,47 +1,60 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { LikeResponse, Project, Certificate } from '../models/portfolio.model';
 
 @Injectable({ providedIn: 'root' })
 export class PortfolioService {
   private readonly api = 'http://localhost:8000/api';
+
+  // Fallback hard-coded projects used when projects-data.json doesn't exist yet
+  private readonly fallbackProjects: Project[] = [
+    {
+      title: 'Forecaster',
+      description: 'A real-time weather forecasting app that provides 5 days of future forecast.',
+      tags: ['Angular', 'HTML', 'TypeScript', 'CSS'],
+      githubUrl: 'https://github.com/IshanM1997/Weather-forecast-app'
+    },
+    {
+      title: 'ShopSphere',
+      description: 'A production-ready e-commerce application with Angular 17 frontend, Spring Boot 3 backend, and MySQL.',
+      tags: ['Angular', 'Spring Boot', 'Java', 'JWT', 'MySQL 8'],
+      githubUrl: 'https://github.com/IshanM1997/E-commerce-website.git'
+    },
+    {
+      title: 'Dashboard Creator',
+      description: 'A dynamic, auto-refreshing dashboard that reads multiple Excel files and visualises them as interactive charts.',
+      tags: ['Angular', 'Python', 'pandas', 'Excel'],
+      githubUrl: 'https://github.com/IshanM1997/Dashboard-Creator.git'
+    },
+    {
+      title: 'FileForge — File Converter & Merger',
+      description: 'A full-stack file conversion and merging tool. Python Flask backend · Angular 17 frontend.',
+      tags: ['Angular 17', 'Python', 'Flask', 'Bootstrap'],
+      githubUrl: 'https://github.com/IshanM1997/File-Converter.git'
+    }
+  ];
+
   constructor(private http: HttpClient) {}
 
   getLikes(): Observable<LikeResponse> {
     return this.http.get<LikeResponse>(`${this.api}/likes`);
   }
+
   postLike(): Observable<LikeResponse> {
     return this.http.post<LikeResponse>(`${this.api}/likes`, {});
   }
 
-  getProjects(): Project[] {
-    return [
-      {
-        title: 'Forecaster',
-        description: 'A real-time weather forecasting app that provides 5 days of future forecast.',
-        tags: ['Angular', 'HTML', 'TypeScript', 'CSS'],
-        githubUrl: 'https://github.com/IshanM1997/Weather-forecast-app'
-      },
-      {
-        title: 'ShopSphere',
-        description: 'A production-ready e-commerce application with Angular 17 frontend, Spring Boot 3 backend, and MySQL. Integrates FakeStoreAPI to auto-populate products.',
-        tags: ['Angular', 'Spring Boot', 'Java', 'JWT', 'MySQL 8'],
-        githubUrl: 'https://github.com/IshanM1997/E-commerce-website.git'
-      },
-      {
-        title: 'Dashboard Creator',
-        description: 'A dynamic, auto-refreshing dashboard that reads multiple Excel files and visualises them as interactive charts. Changes to an Excel file reflect in the browser within seconds.',
-        tags: ['Angular', 'Python', 'pandas', 'Excel'],
-        githubUrl: 'https://github.com/IshanM1997/Dashboard-Creator.git'
-      },
-      {
-        title: 'FileForge — File Converter & Merger',
-        description: 'A full-stack file conversion and merging tool built with Python Flask backend and Angular 17 frontend.',
-        tags: ['Angular 17', 'Python', 'Flask', 'Bootstrap'],
-        githubUrl: 'https://github.com/IshanM1997/File-Converter.git'
-      }
-    ];
+  /**
+   * Loads projects from the auto-generated projects-data.json (produced by
+   * backend/github_sync.py).  Falls back to the hard-coded list if the file
+   * doesn't exist yet — so the site always shows something.
+   */
+  getProjects(): Observable<Project[]> {
+    return this.http.get<Project[]>('assets/projects-data.json').pipe(
+      catchError(() => of(this.fallbackProjects))
+    );
   }
 
   getCertificates(): Certificate[] {
