@@ -1,22 +1,24 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { NavbarComponent }  from './components/navbar/navbar.component';
-import { AboutComponent }   from './components/about/about.component';
-import { ProjectsComponent } from './components/projects/projects.component';
-import { ContactComponent } from './components/contact/contact.component';
+import { NavbarComponent }    from './components/navbar/navbar.component';
+import { AboutComponent }     from './components/about/about.component';
+import { ExperienceComponent } from './components/experience/experience.component';
+import { ProjectsComponent }  from './components/projects/projects.component';
+import { ContactComponent }   from './components/contact/contact.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NavbarComponent, AboutComponent, ProjectsComponent, ContactComponent],
+  imports: [NavbarComponent, AboutComponent, ExperienceComponent, ProjectsComponent, ContactComponent],
   template: `
     <app-navbar></app-navbar>
     <main>
       <app-about></app-about>
+      <app-experience></app-experience>
       <app-projects></app-projects>
       <app-contact></app-contact>
     </main>
     <footer>
-      <p>© 2026 Ishan's Portfolio. All rights reserved.</p>
+      <p>© 2026 Ishan Mukhopadhyay. All rights reserved.</p>
     </footer>
   `
 })
