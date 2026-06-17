@@ -13,9 +13,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   activeSection = 'about';
 
   navLinks = [
-    { href: '#about',    icon: 'fas fa-home fs-5',     label: 'Home',          sectionId: 'about'    },
-    { href: '#projects', icon: 'fas fa-code fs-5',     label: 'Featured Work', sectionId: 'projects' },
-    { href: '#contact',  icon: 'fas fa-envelope fs-5', label: 'Get in Touch',  sectionId: 'contact'  }
+    { href: '#about',      icon: 'fas fa-home fs-5',        label: 'Home',          sectionId: 'about'      },
+    { href: '#experience', icon: 'fas fa-briefcase fs-5',   label: 'Experience',    sectionId: 'experience' },
+    { href: '#projects',   icon: 'fas fa-code fs-5',        label: 'Featured Work', sectionId: 'projects'   },
+    { href: '#contact',    icon: 'fas fa-envelope fs-5',    label: 'Get in Touch',  sectionId: 'contact'    }
   ];
 
   private observer!: IntersectionObserver;
