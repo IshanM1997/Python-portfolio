@@ -1,0 +1,79 @@
+<section id="experience" class="section experience-section">
+  <div class="container">
+    <h2 class="section-title" appReveal="up">Experience</h2>
+
+    <!-- Company Tabs -->
+    <div class="section-tabs" role="tablist" appReveal="up">
+
+      <!-- Cognizant Tab -->
+      <button
+        class="section-tab exp-tab"
+        [class.active]="activeTab === 'cognizant'"
+        role="tab"
+        [attr.aria-selected]="activeTab === 'cognizant'"
+        (click)="switchTab('cognizant')"
+      >
+        <!-- Cognizant logo SVG -->
+        <svg class="company-logo" viewBox="0 0 80 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="6" cy="12" r="6" fill="#1473C8"/>
+          <circle cx="18" cy="12" r="6" fill="#00A1E0"/>
+          <text x="28" y="17" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="currentColor">Cognizant</text>
+        </svg>
+      </button>
+
+      <!-- EY GDS Tab -->
+      <button
+        class="section-tab exp-tab"
+        [class.active]="activeTab === 'ey'"
+        role="tab"
+        [attr.aria-selected]="activeTab === 'ey'"
+        (click)="switchTab('ey')"
+      >
+        <!-- EY logo SVG -->
+        <svg class="company-logo ey-logo" viewBox="0 0 60 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="28" height="24" rx="2" fill="#FFE600"/>
+          <text x="4" y="18" font-family="Arial,sans-serif" font-size="16" font-weight="900" fill="#2E2E38">EY</text>
+          <text x="32" y="17" font-family="Arial,sans-serif" font-size="10" font-weight="700" fill="currentColor">GDS</text>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- Active Company Info Bar -->
+    <div class="exp-meta-bar" appReveal="up">
+      <div class="exp-meta-info">
+        <span class="exp-meta-date">
+          <i class="fas fa-calendar-alt me-1"></i>{{ activeExperience.date }}
+        </span>
+        <span class="exp-meta-dot">·</span>
+        <span class="exp-meta-location">
+          <i class="fas fa-map-marker-alt me-1"></i>{{ activeExperience.location }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Experience Cards -->
+    <div class="exp-cards-grid" appReveal="up">
+      <div class="exp-card" *ngFor="let card of activeExperience.cards">
+
+        <div class="exp-card__header">
+          <div>
+            <h3 class="exp-card__project">{{ card.projectName }}</h3>
+            <p class="exp-card__role">
+              <i class="fas fa-briefcase me-1"></i>{{ card.role }}
+            </p>
+          </div>
+          <span class="exp-card__company-badge">{{ activeExperience.company }}</span>
+        </div>
+
+        <p class="exp-card__description">{{ card.description }}</p>
+
+        <div class="exp-card__tech">
+          <span class="tech-tag" *ngFor="let t of card.tech">{{ t }}</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
